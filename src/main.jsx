@@ -107,6 +107,7 @@ const uiCopy = {
     langTitle: "Switch to Chinese",
     langShort: "CN",
     wechatTitle: "WeChat QR code",
+    wechatCta: "Contact me on WeChat",
     emailTitle: "Email Jero",
     city: "Beijing",
     heroKicker: "Visual Direction / Packaging / Production",
@@ -134,6 +135,7 @@ const uiCopy = {
     langTitle: "切换到英文",
     langShort: "EN",
     wechatTitle: "微信二维码",
+    wechatCta: "在微信上与我联系",
     emailTitle: "发送邮件",
     city: "北京",
     heroKicker: "视觉方向 / 包装系统 / 生产落地",
@@ -156,6 +158,19 @@ const uiCopy = {
     next: "下一个案例",
     openProject: "打开项目"
   }
+};
+
+const caseAtmospheres = {
+  "baidu-planetary-moon": ["#d8c5a3", "#26364a"],
+  "baidu-premium-dragon": ["#d5b887", "#7a211f"],
+  "baidu-dragon-employee": ["#efe2c4", "#263f5f"],
+  "duxiaoman-mid-autumn": ["#f0d1a9", "#2f718f"],
+  "baidu-lunar-future": ["#c7d7dd", "#142c3d"],
+  "ant-ceremonial-ornament": ["#e7ddd0", "#151515"],
+  "didi-incense-holder": ["#e4d5c4", "#76583d"],
+  "ziroom-new-year-disco": ["#e5c477", "#77212b"],
+  "sogou-translator-box": ["#d9d0c4", "#26364a"],
+  "baidu-new-year-pack": ["#e3b294", "#8a241f"]
 };
 
 const series = [
@@ -427,8 +442,7 @@ function Header({ language, setLanguage, navigate, t }) {
         <a className="nav-link" href="#contact" onClick={(event) => go(event, "#contact")}>{t.nav[2]}</a>
       </nav>
       <div className="header-tools">
-        <button className="tool-button" type="button" aria-label={t.langTitle} title={t.langTitle} onClick={() => setLanguage(language === "en" ? "zh" : "en")}>
-          <GlobeIcon />
+        <button className="tool-button lang-button" type="button" aria-label={t.langTitle} title={t.langTitle} onClick={() => setLanguage(language === "en" ? "zh" : "en")}>
           <span>{t.langShort}</span>
         </button>
         <div className="wechat-tool">
@@ -437,6 +451,7 @@ function Header({ language, setLanguage, navigate, t }) {
           </button>
           <div className="wechat-popover" role="img" aria-label={t.wechatTitle}>
             <img src={publicAsset("/contact/wechat-qr.png")} alt={t.wechatTitle} />
+            <p>{t.wechatCta}</p>
           </div>
         </div>
         <a className="tool-button" href="mailto:qwhe@foxmail.com" aria-label={t.emailTitle} title={t.emailTitle}>
@@ -445,15 +460,6 @@ function Header({ language, setLanguage, navigate, t }) {
         <span className="header-city">{t.city}</span>
       </div>
     </header>
-  );
-}
-
-function GlobeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="9" />
-      <path d="M3 12h18M12 3c2.5 2.4 3.8 5.4 3.8 9S14.5 18.6 12 21M12 3C9.5 5.4 8.2 8.4 8.2 12S9.5 18.6 12 21" />
-    </svg>
   );
 }
 
@@ -652,6 +658,11 @@ function WorkDetail({ work, navigate, t }) {
     const index = cases.findIndex((item) => item.slug === work.slug);
     return cases[(index + 1) % cases.length];
   }, [work.slug]);
+  const atmosphere = caseAtmospheres[work.slug] || ["#f3f1ed", "#d8d1c7"];
+  const galleryStyle = {
+    "--case-bg-a": atmosphere[0],
+    "--case-bg-b": atmosphere[1]
+  };
 
   return (
     <>
@@ -725,7 +736,7 @@ function WorkDetail({ work, navigate, t }) {
           </div>
         </div>
       </section>
-      <section className="case-gallery bg-[#f3f1ed] px-0 py-0">
+      <section className="case-gallery px-0 py-0" style={galleryStyle}>
         <div className="mx-auto max-w-[1500px]">
           {work.gallery.map((image, index) => (
             <figure key={image} className="js-reveal case-plate">

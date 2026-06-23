@@ -180,6 +180,12 @@ a {
   transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
 }
 
+.lang-button {
+  min-width: 2.65rem;
+  width: auto;
+  padding: 0 0.75rem;
+}
+
 .tool-button:hover,
 .tool-button:focus-visible {
   border-color: rgba(255, 255, 255, 0.48);
@@ -214,8 +220,8 @@ a {
   position: absolute;
   top: calc(100% + 0.75rem);
   right: 50%;
-  width: 172px;
-  padding: 0.55rem;
+  width: 224px;
+  padding: 0.7rem 0.7rem 0.8rem;
   border-radius: 0.85rem;
   background: #fff;
   opacity: 0;
@@ -230,6 +236,16 @@ a {
   width: 100%;
   height: auto;
   border-radius: 0.45rem;
+}
+
+.wechat-popover p {
+  margin: 0.6rem 0 0;
+  color: rgba(0, 0, 0, 0.56);
+  font-family: "IBM Plex Mono", "PingFang SC", sans-serif;
+  font-size: 10px;
+  line-height: 1.35;
+  text-align: center;
+  letter-spacing: 0.08em;
 }
 
 .wechat-tool:hover .wechat-popover,
@@ -282,7 +298,31 @@ a {
 }
 
 .case-gallery {
+  position: relative;
+  overflow: hidden;
   border-top: 0;
+  background:
+    radial-gradient(circle at 20% 8%, color-mix(in srgb, var(--case-bg-a) 74%, white 26%) 0, transparent 34rem),
+    radial-gradient(circle at 82% 12%, color-mix(in srgb, var(--case-bg-b) 64%, white 36%) 0, transparent 38rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--case-bg-a) 50%, #f4f1ec 50%), color-mix(in srgb, var(--case-bg-b) 28%, #f7f3ec 72%));
+}
+
+.case-gallery::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: -18%;
+  background:
+    radial-gradient(circle at 12% 24%, color-mix(in srgb, var(--case-bg-a) 68%, transparent) 0, transparent 30%),
+    radial-gradient(circle at 88% 42%, color-mix(in srgb, var(--case-bg-b) 56%, transparent) 0, transparent 34%),
+    radial-gradient(circle at 52% 88%, rgba(255, 255, 255, 0.42) 0, transparent 32%);
+  filter: blur(58px);
+  opacity: 0.72;
+}
+
+.case-gallery > div {
+  position: relative;
+  z-index: 1;
 }
 
 .case-plate {
@@ -297,6 +337,7 @@ a {
   height: auto;
   margin: 0 auto;
   background: #fff;
+  box-shadow: 0 18px 70px rgba(0, 0, 0, 0.08);
 }
 
 .series-panel {
@@ -394,13 +435,18 @@ a {
     height: 2rem;
   }
 
+  .lang-button {
+    min-width: 2.35rem;
+    padding: 0 0.55rem;
+  }
+
   .header-city {
     display: none;
   }
 
   .wechat-popover {
     right: 0;
-    width: 150px;
+    width: 184px;
     transform: translate3d(0, -8px, 0) scale(0.96);
   }
 
