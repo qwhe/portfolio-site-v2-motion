@@ -59,6 +59,42 @@ a {
   font-stretch: condensed;
 }
 
+.lang-zh {
+  font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+.lang-zh .hero-title,
+.lang-zh .section-title,
+.lang-zh .narrative-type {
+  letter-spacing: -0.045em;
+}
+
+.lang-zh .hero-title {
+  max-width: 5ch;
+}
+
+.lang-zh .section-title {
+  max-width: 6ch;
+}
+
+.lang-zh p,
+.lang-zh dd,
+.lang-zh span {
+  letter-spacing: 0;
+}
+
+.lang-zh .text-3xl,
+.lang-zh .md\:text-6xl,
+.lang-zh .md\:text-4xl {
+  line-height: 1.12;
+}
+
+.js-tilt-title {
+  transform-style: preserve-3d;
+  transform-origin: 50% 58%;
+  will-change: transform;
+}
+
 .cursor-dot,
 .cursor-ring {
   pointer-events: none;
@@ -269,8 +305,39 @@ a {
   animation: bounce 1.6s ease-in-out infinite;
 }
 
+.hero-cycle-image {
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 1.45s ease, transform 5.4s ease;
+}
+
+.hero-cycle-image.is-active {
+  opacity: 0.82;
+  transform: scale(1.04);
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
 .work-panel {
+  min-height: 56vh;
   will-change: flex, transform;
+  transform-origin: center;
+  transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
+}
+
+.work-panel.is-active {
+  z-index: 2;
+  transform: scale(1.035);
+}
+
+.work-panel.is-dimmed {
+  opacity: 0.68;
+  filter: saturate(0.72) brightness(0.92);
+  transform: scale(0.955);
 }
 
 .work-panel::after,
@@ -302,9 +369,10 @@ a {
   overflow: hidden;
   border-top: 0;
   background:
-    radial-gradient(circle at 20% 8%, color-mix(in srgb, var(--case-bg-a) 74%, white 26%) 0, transparent 34rem),
-    radial-gradient(circle at 82% 12%, color-mix(in srgb, var(--case-bg-b) 64%, white 36%) 0, transparent 38rem),
-    linear-gradient(135deg, color-mix(in srgb, var(--case-bg-a) 50%, #f4f1ec 50%), color-mix(in srgb, var(--case-bg-b) 28%, #f7f3ec 72%));
+    radial-gradient(circle at 20% 8%, color-mix(in srgb, var(--case-bg-a) 74%, white 26%) 0, transparent 36rem),
+    radial-gradient(circle at 82% 12%, color-mix(in srgb, var(--case-bg-b) 64%, white 36%) 0, transparent 40rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--case-bg-a) 54%, #f4f1ec 46%), color-mix(in srgb, var(--case-bg-b) 32%, #f7f3ec 68%));
+  transition: background 0.65s ease;
 }
 
 .case-gallery::before {
@@ -328,16 +396,102 @@ a {
 .case-plate {
   position: relative;
   margin: 0;
-  padding: clamp(0.45rem, 1.2vw, 1rem) clamp(1rem, 5vw, 5rem);
+  padding: clamp(0.35rem, 0.85vw, 0.8rem) clamp(0.75rem, 2vw, 2rem);
 }
 
 .case-study-image {
   display: block;
-  width: min(100%, 1280px);
+  width: min(100%, 1660px);
   height: auto;
   margin: 0 auto;
   background: #fff;
   box-shadow: 0 18px 70px rgba(0, 0, 0, 0.08);
+}
+
+.contact-footer {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-center {
+  width: min(100%, 980px);
+  text-align: center;
+}
+
+.contact-email {
+  display: inline-block;
+  font-family: Inter, "PingFang SC", sans-serif;
+  font-size: clamp(2.8rem, 6vw, 6.4rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.contact-socials {
+  margin-top: 1.1rem;
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.2rem, 4vw, 3.4rem);
+  font-family: Inter, "PingFang SC", sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.65rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.contact-socials a,
+.wechat-contact {
+  position: relative;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.contact-socials a:hover,
+.wechat-contact:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.contact-qr {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 1rem);
+  width: 190px;
+  padding: 0.65rem;
+  border-radius: 0.9rem;
+  background: #fff;
+  opacity: 0;
+  transform: translate3d(-50%, 8px, 0) scale(0.96);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.contact-qr img {
+  width: 100%;
+  height: auto;
+}
+
+.wechat-contact:hover .contact-qr {
+  opacity: 1;
+  transform: translate3d(-50%, 0, 0) scale(1);
+}
+
+.contact-bottom {
+  position: absolute;
+  left: 50%;
+  bottom: 2rem;
+  display: flex;
+  transform: translateX(-50%);
+  gap: 2rem;
+  color: rgba(255, 255, 255, 0.25);
+  font-family: Inter, "PingFang SC", sans-serif;
+  font-size: clamp(0.95rem, 1.5vw, 1.35rem);
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .series-panel {
@@ -454,11 +608,65 @@ a {
   .wechat-tool:focus-within .wechat-popover {
     transform: translate3d(0, 0, 0) scale(1);
   }
+
+  .contact-socials {
+    flex-wrap: wrap;
+  }
+
+  .contact-email {
+    max-width: 100%;
+    font-size: clamp(2rem, 10vw, 3rem);
+    letter-spacing: -0.055em;
+    word-break: break-word;
+  }
+
+  .contact-bottom {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
   .cursor-dot,
   .cursor-ring {
     display: flex;
+  }
+}
+
+@media (min-width: 768px) {
+  .works-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-flow: dense;
+  }
+
+  .work-panel {
+    min-height: 48vh;
+  }
+
+  .work-panel-1 {
+    grid-column: span 6;
+    min-height: 58vh;
+  }
+
+  .work-panel-2,
+  .work-panel-3 {
+    grid-column: span 3;
+    min-height: 58vh;
+  }
+
+  .work-panel-4,
+  .work-panel-5,
+  .work-panel-6 {
+    grid-column: span 4;
+    min-height: 46vh;
+  }
+
+  .work-panel-7,
+  .work-panel-8,
+  .work-panel-9,
+  .work-panel-10 {
+    grid-column: span 3;
+    min-height: 54vh;
   }
 }

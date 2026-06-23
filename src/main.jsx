@@ -101,9 +101,90 @@ const cases = caseManifest.map((item) => {
   };
 });
 
+const zhCaseCopy = {
+  "baidu-planetary-moon": {
+    title: "星球月礼",
+    label: "中秋 / IP 礼赠系统",
+    category: "中秋礼赠系统",
+    line: "围绕星球探索、DuBear 角色与收藏盲盒展开的中秋礼赠系统。",
+    detail: "这个中秋项目把传统月礼转译为一次太空探索：角色叙事、收藏结构、包装开启方式与产品陈列共同组成一个更像发射任务的品牌礼物，而不是常规礼盒。"
+  },
+  "baidu-premium-dragon": {
+    title: "龙礼系统",
+    label: "端午 / 高端礼盒",
+    category: "端午高端礼盒",
+    line: "以神话、星象和仪式感构建的高端端午礼盒。",
+    detail: "项目用飞龙、星图和正式赠礼秩序重新组织端午语境，把熟悉的节日礼品提升为更具收藏感和品牌辨识度的高触感物件。"
+  },
+  "baidu-dragon-employee": {
+    title: "端午礼物",
+    label: "员工礼 / 字体 / 插画",
+    category: "员工礼与字体系统",
+    line: "把包装、龙舟插画与节日字体合并为一个完整员工礼系统。",
+    detail: "这个案例整合 Behance 项目、Dribbble 字体展示与相关百度端午素材，不再重复拆分平台上传内容，而是作为一个统一的员工节日礼赠系统呈现。"
+  },
+  "duxiaoman-mid-autumn": {
+    title: "穿越月球",
+    label: "中秋 / 员工礼",
+    category: "中秋员工礼",
+    line: "一个有强传播反馈的金融品牌中秋员工礼项目。",
+    detail: "项目把品牌阶段、月亮意象和员工礼赠连接起来，通过物件系统让礼物既适合接收，也能被记住。"
+  },
+  "baidu-lunar-future": {
+    title: "登月未来",
+    label: "月亮 / 航天 / 未来感",
+    category: "月亮与航天礼赠系统",
+    line: "跨越 AI、登月、航天和未来叙事的月亮主题系统。",
+    detail: "这是一个月亮主题案例组，展示同一中秋母题如何在 AI、太空、员工文化等不同语境中变化，同时仍然保持可生产和可交付。"
+  },
+  "ant-ceremonial-ornament": {
+    title: "纪念摆件",
+    label: "商务礼 / 雕塑物件",
+    category: "商务纪念物件",
+    line: "从包装语言延伸到雕塑记忆的商务礼物。",
+    detail: "这个案例把蚂蚁集团纪念摆件与相关抽象装饰研究合并为一个物件叙事，让作品集从平面与节日包装扩展到更具重量的纪念物。"
+  },
+  "didi-incense-holder": {
+    title: "香器礼物",
+    label: "仪式物件",
+    category: "仪式物件",
+    line: "一个带有重量、仪式和安静场景感的品牌物件。",
+    detail: "它作为节日包装之外的补充案例，展示企业礼物如何通过材质、比例和日常仪式形成品牌记忆。"
+  },
+  "ziroom-new-year-disco": {
+    title: "新年迪斯科",
+    label: "新年礼 / 年轻文化",
+    category: "新年礼盒系统",
+    line: "用更年轻、更有节奏的方式处理新年礼盒。",
+    detail: "这是一个围绕迪斯科、节奏和员工文化建立的新年礼赠系统，用来平衡作品集中偏高级仪式感的案例，补充更轻快的品牌声音。"
+  },
+  "sogou-translator-box": {
+    title: "翻译盒子",
+    label: "产品包装 / 礼盒",
+    category: "产品礼盒包装",
+    line: "一个证明系统方法同样适用于产品礼盒的包装案例。",
+    detail: "这是搜狗翻译产品的礼盒包装案例，扩展了作品集从节日礼赠到产品型盒装系统与零售化展示的范围。"
+  },
+  "baidu-new-year-pack": {
+    title: "新年礼盒",
+    label: "新年礼 / 品牌系统",
+    category: "新年品牌礼盒",
+    line: "一个作为礼赠档案起点保留的百度早期新年项目。",
+    detail: "这个案例保留了长期新年礼赠线索，展示作品如何从早期节日包装逐渐走向更完整、更具叙事感的品牌礼赠系统。"
+  }
+};
+
+const localizeCase = (item, language) => {
+  if (language !== "zh") return item;
+  return { ...item, ...(zhCaseCopy[item.slug] || {}) };
+};
+
 const uiCopy = {
   en: {
+    language: "en",
     nav: ["Works", "Method", "Contact"],
+    brand: "Jero Zhou",
+    heroName: ["Jero", "Zhou"],
     langTitle: "Switch to Chinese",
     langShort: "CN",
     wechatTitle: "WeChat QR code",
@@ -118,6 +199,7 @@ const uiCopy = {
     introTitle: "The brief repeats every festival. The answer should never feel repeated.",
     introBody: "The portfolio is edited as a case library, not a platform dump: repeated uploads are merged, stronger sources are retained, and each case keeps its provenance.",
     worksBody: "Ten deduplicated cases, selected from ZCOOL, Behance, Dribbble, and the original portfolio, then rebuilt as local project pages.",
+    worksTitle: "Works",
     overview: "Project overview",
     client: "Client",
     year: "Year",
@@ -128,10 +210,36 @@ const uiCopy = {
     caseNote: "The following images are arranged as a continuous project page, keeping the original case rhythm intact instead of compressing the work into a masonry grid.",
     back: "Back to index",
     next: "Next case",
-    openProject: "Open project"
+    openProject: "Open project",
+    narrativeKicker: "From drawing to shelf",
+    narrativeLines: ["Most designers", "deliver files.", "Jero delivers", "730,000", "approved objects."],
+    methodKicker: "Method",
+    methodTitle: "From concept to shipment",
+    methodBody: "The work does not end at a render. It moves through material, sample, factory, inspection, and handoff.",
+    methods: [
+      ["01", "Strategic Framing", "Define the audience, occasion, budget, and emotional role before a single object is selected."],
+      ["02", "Visual Direction", "Build a restrained visual language across structure, palette, typography, illustration, and narrative."],
+      ["03", "Object Sourcing", "Match the idea with the right carrier, supplier, material, finish, and production tolerance."],
+      ["04", "Prototype Control", "Use samples to test proportion, touch, opening rhythm, print accuracy, and packing logic."],
+      ["05", "Factory Supervision", "Monitor color, craft, assembly, defects, and the quiet details that drawings cannot guarantee."],
+      ["06", "Delivery System", "Shape the final handoff: packaging, campaign assets, photography, and launch-ready communication."]
+    ],
+    seriesKicker: "Series index",
+    seriesTitle: "Related systems",
+    archiveKicker: "Archive",
+    archiveBody: "Earlier and supporting works remain visible without diluting the featured case narrative.",
+    queued: "Queued",
+    contactKicker: "Contact",
+    contactEmail: "qwhe@foxmail.com",
+    contactLinks: ["WECHAT", "BEHANCE", "DRIBBBLE", "ZCOOL"],
+    contactLegal: ["PORTFOLIO V2", "BEIJING"],
+    copyright: "© 2026"
   },
   zh: {
+    language: "zh",
     nav: ["作品", "方法", "联系"],
+    brand: "周游",
+    heroName: ["周游"],
     langTitle: "切换到英文",
     langShort: "EN",
     wechatTitle: "微信二维码",
@@ -146,6 +254,7 @@ const uiCopy = {
     introTitle: "节日 brief 会重复，但答案不应该重复。",
     introBody: "这个作品集不是平台作品堆叠，而是把重复发布的案例合并、保留更强素材，并为每个项目留下来源。",
     worksBody: "从站酷、Behance、Dribbble 与原作品集整理出 10 个去重案例，并重建为本地项目页。",
+    worksTitle: "作品",
     overview: "项目概览",
     client: "客户",
     year: "年份",
@@ -156,7 +265,30 @@ const uiCopy = {
     caseNote: "以下图片按完整项目页的节奏连续展示，尽量保留原案例阅读顺序，而不是压缩成瀑布流。",
     back: "返回首页",
     next: "下一个案例",
-    openProject: "打开项目"
+    openProject: "打开项目",
+    narrativeKicker: "从图纸到货架",
+    narrativeLines: ["多数设计师", "交付文件。", "周游交付", "730,000", "件合格实物。"],
+    methodKicker: "方法",
+    methodTitle: "从概念到交付",
+    methodBody: "作品不会停在效果图。它要继续经过材料、打样、工厂、验收和最终交付。",
+    methods: [
+      ["01", "策略定义", "先明确受众、场景、预算和情绪角色，再决定具体物件。"],
+      ["02", "视觉方向", "建立克制但有辨识度的结构、色彩、字体、插画和叙事语言。"],
+      ["03", "选品打样", "把创意匹配到合适载体、供应商、材料、工艺和生产容差。"],
+      ["04", "样品控制", "通过样品验证比例、手感、开启节奏、印刷准确度和装箱逻辑。"],
+      ["05", "工厂监修", "跟进颜色、工艺、组装、瑕疵和图纸之外的细节。"],
+      ["06", "交付传播", "整理最终交付：包装、传播素材、摄影和上线沟通。"]
+    ],
+    seriesKicker: "系列索引",
+    seriesTitle: "相关系统",
+    archiveKicker: "档案",
+    archiveBody: "早期和辅助作品保留为线索，但不削弱精选案例的叙事。",
+    queued: "候选",
+    contactKicker: "联系",
+    contactEmail: "qwhe@foxmail.com",
+    contactLinks: ["微信", "BEHANCE", "DRIBBBLE", "站酷"],
+    contactLegal: ["作品集 V2", "北京"],
+    copyright: "© 2026"
   }
 };
 
@@ -171,6 +303,24 @@ const caseAtmospheres = {
   "ziroom-new-year-disco": ["#e5c477", "#77212b"],
   "sogou-translator-box": ["#d9d0c4", "#26364a"],
   "baidu-new-year-pack": ["#e3b294", "#8a241f"]
+};
+
+const caseImageTones = {
+  "baidu-planetary-moon": [["#d8c5a3", "#26364a"], ["#ece0c8", "#5b3f2c"], ["#cfd8dc", "#1b2d44"]],
+  "baidu-premium-dragon": [["#d5b887", "#7a211f"], ["#ead6ac", "#341a16"], ["#b88f5a", "#902820"]],
+  "baidu-dragon-employee": [["#efe2c4", "#263f5f"], ["#f4ead6", "#8b3127"], ["#d5e1df", "#1e3d63"]],
+  "duxiaoman-mid-autumn": [["#f0d1a9", "#2f718f"], ["#f6e3c4", "#5c8fa2"], ["#d8eff0", "#1f546b"]],
+  "baidu-lunar-future": [["#c7d7dd", "#142c3d"], ["#e4edf0", "#34485d"], ["#b8c8cc", "#1c2430"]],
+  "ant-ceremonial-ornament": [["#e7ddd0", "#151515"], ["#f0e6d8", "#8d755f"], ["#d8d2cb", "#232323"]],
+  "didi-incense-holder": [["#e4d5c4", "#76583d"], ["#efe3d3", "#3e3329"], ["#ccb59a", "#6a4128"]],
+  "ziroom-new-year-disco": [["#e5c477", "#77212b"], ["#f0d79a", "#352237"], ["#d94c44", "#1d1d2b"]],
+  "sogou-translator-box": [["#d9d0c4", "#26364a"], ["#ece8df", "#5b6b7b"], ["#c9d0d7", "#1f2a36"]],
+  "baidu-new-year-pack": [["#e3b294", "#8a241f"], ["#f1d2b7", "#4b1a18"], ["#db835f", "#a42824"]]
+};
+
+const getCaseTone = (slug, index) => {
+  const tones = caseImageTones[slug] || [caseAtmospheres[slug] || ["#f3f1ed", "#d8d1c7"]];
+  return tones[index % tones.length];
 };
 
 const series = [
@@ -200,6 +350,29 @@ const series = [
   }
 ];
 
+const zhSeries = [
+  {
+    title: "端午系统",
+    label: "2018-2020 / 百度 / ByteStyle",
+    line: "高端礼盒、员工礼、节日字体和品牌衍生物，共同形成持续演进的节日仪式语言。"
+  },
+  {
+    title: "中秋系统",
+    label: "2018-2022 / 百度 / 度小满 / 腾讯",
+    line: "围绕月亮、AI、金融、航天和 IP 叙事展开的多版本中秋礼赠系统。"
+  },
+  {
+    title: "新年系统",
+    label: "2017-2023 / 百度 / 自如 / 易车 / 腾讯",
+    line: "同一个红色节日 brief，在不同品牌性格和文化节奏中被重新解答。"
+  },
+  {
+    title: "仪式物件",
+    label: "2018-2020 / 蚂蚁集团 / 滴滴 / 腾讯",
+    line: "有重量的物件：摆件、香器、纪念币、奖杯和商务纪念礼。"
+  }
+];
+
 const archive = [
   ["Baidu New Year Gift Pack", "2017", "ZCOOL", "https://www.zcool.com.cn/work/ZMjU5OTE0Mjg=.html"],
   ["Baidu Direct Sales Dragon Boat Gift", "2019", "ZCOOL", "https://www.zcool.com.cn/work/ZMzY0NjAzNTI=.html"],
@@ -212,13 +385,16 @@ const archive = [
   ["Weibo H5 Experiments", "2016", "ZCOOL", "https://www.zcool.com.cn/work/ZMjQyOTM3NzI=.html"]
 ];
 
-const methods = [
-  ["01", "Strategic Framing", "Define the audience, occasion, budget, and emotional role before a single object is selected."],
-  ["02", "Visual Direction", "Build a restrained visual language across structure, palette, typography, illustration, and narrative."],
-  ["03", "Object Sourcing", "Match the idea with the right carrier, supplier, material, finish, and production tolerance."],
-  ["04", "Prototype Control", "Use samples to test proportion, touch, opening rhythm, print accuracy, and packing logic."],
-  ["05", "Factory Supervision", "Monitor color, craft, assembly, defects, and the quiet details that drawings cannot guarantee."],
-  ["06", "Delivery System", "Shape the final handoff: packaging, campaign assets, photography, and launch-ready communication."]
+const zhArchive = [
+  ["百度新年礼盒", "2017", "站酷"],
+  ["百度直销端午礼", "2019", "站酷"],
+  ["ByteStyle 端午衍生物", "2020", "站酷 / Dribbble"],
+  ["腾讯 Q2 产品套装", "2020", "站酷"],
+  ["滴滴香器", "2018", "站酷"],
+  ["王者荣耀周边物件", "2017", "站酷"],
+  ["VR 眼镜盒", "2018", "站酷"],
+  ["搜狐日历", "2015", "站酷"],
+  ["微博 H5 实验", "2016", "站酷"]
 ];
 
 function useRoute() {
@@ -343,6 +519,13 @@ function App() {
       y: gsap.quickTo(el, "y", { duration: 0.55, ease: "power3.out" }),
       depth: Number(el.dataset.depth || 10)
     }));
+    const tiltTitles = [...document.querySelectorAll(".js-tilt-title")].map((el) => ({
+      el,
+      rotateX: gsap.quickTo(el, "rotateX", { duration: 0.7, ease: "power3.out" }),
+      rotateY: gsap.quickTo(el, "rotateY", { duration: 0.7, ease: "power3.out" }),
+      x: gsap.quickTo(el, "x", { duration: 0.7, ease: "power3.out" }),
+      y: gsap.quickTo(el, "y", { duration: 0.7, ease: "power3.out" })
+    }));
 
     const onMouseMove = (event) => {
       const relX = event.clientX / window.innerWidth - 0.5;
@@ -350,6 +533,12 @@ function App() {
       depthItems.forEach((item) => {
         item.x(relX * item.depth);
         item.y(relY * item.depth);
+      });
+      tiltTitles.forEach((item) => {
+        item.rotateY(relX * 3.2);
+        item.rotateX(relY * -2.4);
+        item.x(relX * 10);
+        item.y(relY * 5);
       });
     };
 
@@ -362,7 +551,7 @@ function App() {
   }, [path]);
 
   return (
-    <main ref={rootRef} className="min-h-screen bg-white text-black">
+    <main ref={rootRef} className={`min-h-screen bg-white text-black lang-${t.language}`}>
       <Cursor />
       <div className="noise" />
       <Header language={language} setLanguage={setLanguage} navigate={navigate} t={t} />
@@ -434,7 +623,7 @@ function Header({ language, setLanguage, navigate, t }) {
   return (
     <header className="js-nav fixed left-0 top-0 z-50 flex w-full translate-y-[-16px] items-center justify-between px-5 py-5 opacity-0 md:px-10">
       <a href={routePath("/")} onClick={(event) => go(event, "/")} className="font-display text-sm font-semibold uppercase tracking-[0.08em] text-white md:text-base">
-        Jero Zhou
+        {t.brand}
       </a>
       <nav className="hidden items-center gap-10 rounded-full bg-white/10 px-5 py-3 text-xs font-medium uppercase tracking-[0.08em] text-white backdrop-blur-md md:flex">
         <a className="nav-link" href="#works" onClick={(event) => go(event, "#works")}>{t.nav[0]}</a>
@@ -487,30 +676,48 @@ function Home({ navigate, t }) {
       <Hero t={t} />
       <Intro t={t} />
       <Works navigate={navigate} t={t} />
-      <Narrative />
-      <SeriesIndex navigate={navigate} />
-      <Archive />
-      <Method />
-      <About />
+      <Narrative t={t} />
+      <SeriesIndex navigate={navigate} t={t} />
+      <Archive t={t} />
+      <Method t={t} />
+      <About t={t} />
     </>
   );
 }
 
 function Hero({ t }) {
-  const heroCase = cases[0];
+  const heroCases = [cases[0], cases[1], cases[3], cases[5], cases[7]].filter(Boolean);
+  const [activeHero, setActiveHero] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveHero((index) => (index + 1) % heroCases.length);
+    }, 4200);
+    return () => window.clearInterval(timer);
+  }, [heroCases.length]);
 
   return (
     <section id="top" className="hero relative flex h-svh min-h-[620px] overflow-hidden bg-black text-white">
-      <img data-depth="18" data-parallax="12" className="js-hero-bg js-parallax absolute inset-0 h-full w-full scale-110 object-cover opacity-80" src={heroCase.image} alt={heroCase.title} />
+      {heroCases.map((item, index) => (
+        <img
+          key={item.slug}
+          data-depth={index === activeHero ? "18" : "6"}
+          data-parallax="12"
+          className={`hero-cycle-image js-hero-bg js-parallax absolute inset-0 h-full w-full object-cover ${index === activeHero ? "is-active" : ""}`}
+          src={item.image}
+          alt={item.title}
+        />
+      ))}
       <div className="absolute inset-0 bg-black/40" />
       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 to-transparent" />
       <div className="relative z-10 flex w-full flex-col justify-end px-5 pb-12 md:px-10 md:pb-14">
         <p className="js-hero-meta mb-6 translate-y-8 font-mono text-xs uppercase tracking-[0.26em] text-white/70 opacity-0">
           {t.heroKicker}
         </p>
-        <h1 className="hero-title max-w-[7.7ch] font-display text-[19vw] font-black uppercase leading-[0.78] md:text-[12.6vw]">
-          <span className="js-hero-line block translate-y-16 opacity-0">Jero</span>
-          <span className="js-hero-line block translate-y-16 opacity-0">Zhou</span>
+        <h1 className="hero-title js-tilt-title max-w-[7.7ch] font-display text-[19vw] font-black uppercase leading-[0.78] md:text-[12.6vw]">
+          {t.heroName.map((word) => (
+            <span key={word} className="js-hero-line block translate-y-16 opacity-0">{word}</span>
+          ))}
         </h1>
         <div className="mt-8 grid gap-7 md:grid-cols-[1fr_360px] md:items-end">
           <p className="js-hero-meta max-w-[16ch] translate-y-8 text-3xl font-medium leading-[0.95] tracking-[-0.05em] opacity-0 md:text-6xl">
@@ -548,6 +755,7 @@ function Intro({ t }) {
 
 function Works({ navigate, t }) {
   const [activeWork, setActiveWork] = useState(null);
+  const localizedCases = cases.map((item) => localizeCase(item, t.language));
 
   const openWork = (event, chapter) => {
     event.preventDefault();
@@ -557,13 +765,13 @@ function Works({ navigate, t }) {
   return (
     <section id="works" className="works rounded-t-[2rem] bg-white px-5 py-24 md:px-10 md:py-32">
       <div className="js-reveal grid gap-8 md:grid-cols-[1fr_360px] md:items-end">
-        <h2 className="section-title font-display text-[20vw] font-black uppercase leading-[0.8] md:text-[14vw]">Works</h2>
+        <h2 className="section-title js-tilt-title font-display text-[20vw] font-black uppercase leading-[0.8] md:text-[14vw]">{t.worksTitle}</h2>
           <p className="max-w-[34ch] text-base leading-relaxed text-black/58">
           {t.worksBody}
         </p>
       </div>
-      <div className="mt-16 grid gap-4 md:grid-cols-4" onMouseLeave={() => setActiveWork(null)}>
-        {cases.map((chapter, index) => {
+      <div className="works-grid mt-16" onMouseLeave={() => setActiveWork(null)}>
+        {localizedCases.map((chapter, index) => {
           const isDimmed = activeWork !== null && activeWork !== index;
           const isActive = activeWork === index;
 
@@ -574,9 +782,9 @@ function Works({ navigate, t }) {
               onClick={(event) => openWork(event, chapter)}
               onMouseEnter={() => setActiveWork(index)}
               data-cursor="view"
-              className={`work-panel group relative min-h-[58vh] overflow-hidden rounded-xl bg-black transition-all duration-500 ease-out md:min-h-[62vh] ${
-                index === 0 || index === 3 || index === 6 ? "md:col-span-2" : ""
-              } ${isDimmed ? "opacity-72 md:scale-[0.985]" : ""} ${isActive ? "md:scale-[1.012]" : ""}`}
+              className={`work-panel work-panel-${index + 1} group relative overflow-hidden rounded-xl bg-black transition-all duration-500 ease-out ${
+                isDimmed ? "is-dimmed" : ""
+              } ${isActive ? "is-active" : ""}`}
             >
               <img data-depth={isActive ? "26" : "12"} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" src={chapter.image} alt={chapter.title} />
               <div className="absolute inset-0 bg-black/28 transition-colors duration-500 group-hover:bg-black/50" />
@@ -601,7 +809,7 @@ function Works({ navigate, t }) {
   );
 }
 
-function Narrative() {
+function Narrative({ t }) {
   const narrativeCase = cases.find((item) => item.slug === "didi-incense-holder") || cases[0];
 
   return (
@@ -609,34 +817,32 @@ function Narrative() {
       <img data-parallax="-9" className="js-parallax absolute inset-0 h-full w-full scale-110 object-cover opacity-35" src={narrativeCase.image} alt={narrativeCase.title} />
       <div className="absolute inset-0 bg-black/66" />
       <div className="relative z-10 mx-auto max-w-[1180px]">
-        <p className="mb-10 font-mono text-xs uppercase tracking-[0.24em] text-white/45">From drawing to shelf</p>
-        <div className="narrative-type space-y-4 font-display text-[13vw] font-black uppercase leading-[0.86] md:text-[8.3vw]">
-          <p className="js-narrative-line">Most designers</p>
-          <p className="js-narrative-line">deliver files.</p>
-          <p className="js-narrative-line text-white/62">Jero delivers</p>
-          <p className="js-narrative-line">730,000</p>
-          <p className="js-narrative-line">approved objects.</p>
+        <p className="mb-10 font-mono text-xs uppercase tracking-[0.24em] text-white/45">{t.narrativeKicker}</p>
+        <div className="narrative-type js-tilt-title space-y-4 font-display text-[13vw] font-black uppercase leading-[0.86] md:text-[8.3vw]">
+          {t.narrativeLines.map((line, index) => (
+            <p key={line} className={`js-narrative-line ${index === 2 ? "text-white/62" : ""}`}>{line}</p>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function Method() {
+function Method({ t }) {
   return (
     <section id="method" className="bg-white px-5 py-24 md:px-10 md:py-32">
       <div className="grid gap-14 md:grid-cols-[0.9fr_1.1fr]">
         <div className="self-start md:sticky md:top-28">
-          <p className="js-reveal font-mono text-xs uppercase tracking-[0.24em] text-black/42">Method</p>
-          <h2 className="section-title js-reveal mt-5 max-w-[8ch] font-display text-[16vw] font-black uppercase leading-[0.84] md:text-[7.6vw]">
-            From concept to shipment
+          <p className="js-reveal font-mono text-xs uppercase tracking-[0.24em] text-black/42">{t.methodKicker}</p>
+          <h2 className="section-title js-tilt-title js-reveal mt-5 max-w-[8ch] font-display text-[16vw] font-black uppercase leading-[0.84] md:text-[7.6vw]">
+            {t.methodTitle}
           </h2>
           <p className="js-reveal mt-8 max-w-[36ch] text-lg leading-relaxed text-black/58">
-            The work does not end at a render. It moves through material, sample, factory, inspection, and handoff.
+            {t.methodBody}
           </p>
         </div>
         <div className="method-list space-y-3">
-          {methods.map(([num, title, copy]) => (
+          {t.methods.map(([num, title, copy]) => (
             <article key={title} className="js-method method-row border-t border-black/12 py-8">
               <div className="grid gap-6 md:grid-cols-[96px_1fr]">
                 <span className="font-mono text-xs uppercase tracking-[0.18em] text-black/38">{num}</span>
@@ -654,35 +860,58 @@ function Method() {
 }
 
 function WorkDetail({ work, navigate, t }) {
+  const galleryRef = useRef(null);
+  const localWork = localizeCase(work, t.language);
   const nextWork = useMemo(() => {
     const index = cases.findIndex((item) => item.slug === work.slug);
-    return cases[(index + 1) % cases.length];
-  }, [work.slug]);
+    return localizeCase(cases[(index + 1) % cases.length], t.language);
+  }, [work.slug, t.language]);
   const atmosphere = caseAtmospheres[work.slug] || ["#f3f1ed", "#d8d1c7"];
   const galleryStyle = {
     "--case-bg-a": atmosphere[0],
     "--case-bg-b": atmosphere[1]
   };
 
+  useEffect(() => {
+    const gallery = galleryRef.current;
+    if (!gallery) return undefined;
+    const plates = [...gallery.querySelectorAll(".case-plate")];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        const index = Number(visible.target.dataset.index || 0);
+        const tone = getCaseTone(work.slug, index);
+        gallery.style.setProperty("--case-bg-a", tone[0]);
+        gallery.style.setProperty("--case-bg-b", tone[1]);
+      },
+      { threshold: [0.24, 0.45, 0.68] }
+    );
+    plates.forEach((plate) => observer.observe(plate));
+    return () => observer.disconnect();
+  }, [atmosphere, work.slug]);
+
   return (
     <>
       <section className="detail-hero relative min-h-svh overflow-hidden bg-black px-5 pb-14 pt-28 text-white md:px-10 md:pt-32">
-        <img data-depth="18" data-parallax="11" className="js-hero-bg js-parallax absolute inset-0 h-full w-full scale-110 object-cover opacity-60" src={work.image} alt={work.title} />
+        <img data-depth="18" data-parallax="11" className="js-hero-bg js-parallax absolute inset-0 h-full w-full scale-110 object-cover opacity-60" src={work.image} alt={localWork.title} />
         <div className="absolute inset-0 bg-black/65" />
         <div className="relative z-10 grid min-h-[70svh] content-end gap-12 md:grid-cols-[1.2fr_0.8fr] md:items-end">
           <div>
             <button className="js-hero-meta mb-10 translate-y-8 font-mono text-xs uppercase tracking-[0.22em] text-white/64 opacity-0" onClick={() => navigate("/")}>
               {t.back}
             </button>
-            <p className="js-hero-meta mb-5 translate-y-8 font-mono text-xs uppercase tracking-[0.24em] text-white/58 opacity-0">{work.label}</p>
-            <h1 className="hero-title max-w-[8ch] font-display text-[18vw] font-black uppercase leading-[0.78] md:text-[11vw]">
-              {work.title.split(" ").map((word) => (
+            <p className="js-hero-meta mb-5 translate-y-8 font-mono text-xs uppercase tracking-[0.24em] text-white/58 opacity-0">{localWork.label}</p>
+            <h1 className="hero-title js-tilt-title max-w-[8ch] font-display text-[18vw] font-black uppercase leading-[0.78] md:text-[11vw]">
+              {localWork.title.split(" ").map((word) => (
                 <span key={word} className="js-hero-line block translate-y-16 opacity-0">{word}</span>
               ))}
             </h1>
           </div>
           <div className="js-hero-meta translate-y-8 space-y-8 opacity-0">
-            <p className="max-w-[30ch] text-2xl font-medium leading-[1.02] tracking-[-0.045em] md:text-4xl">{work.line}</p>
+            <p className="max-w-[30ch] text-2xl font-medium leading-[1.02] tracking-[-0.045em] md:text-4xl">{localWork.line}</p>
             <dl className="grid grid-cols-2 gap-5 border-y border-white/18 py-5 font-mono text-[11px] uppercase tracking-[0.16em] text-white/62">
               <div><dt className="text-white/38">{t.client}</dt><dd className="mt-2">{work.client}</dd></div>
               <div><dt className="text-white/38">{t.year}</dt><dd className="mt-2">{work.year}</dd></div>
@@ -705,7 +934,7 @@ function WorkDetail({ work, navigate, t }) {
               </div>
               <div className="grid grid-cols-[96px_1fr] gap-5">
                 <dt className="text-black/34">{t.type}</dt>
-                <dd>{work.category}</dd>
+                <dd>{localWork.category}</dd>
               </div>
               <div className="grid grid-cols-[96px_1fr] gap-5">
                 <dt className="text-black/34">{t.role}</dt>
@@ -727,20 +956,20 @@ function WorkDetail({ work, navigate, t }) {
           </div>
           <div className="space-y-8">
             <p className="js-reveal max-w-[19ch] font-display text-5xl font-black uppercase leading-[0.86] tracking-[-0.065em] md:text-8xl">
-              {work.title}
+              {localWork.title}
             </p>
-            <p className="js-reveal max-w-[44ch] text-3xl font-medium leading-[1.04] tracking-[-0.045em] md:text-6xl">{work.detail}</p>
+            <p className="js-reveal max-w-[44ch] text-3xl font-medium leading-[1.04] tracking-[-0.045em] md:text-6xl">{localWork.detail}</p>
             <p className="js-reveal max-w-[52ch] text-base leading-relaxed text-black/56 md:text-lg">
               {t.caseNote}
             </p>
           </div>
         </div>
       </section>
-      <section className="case-gallery px-0 py-0" style={galleryStyle}>
-        <div className="mx-auto max-w-[1500px]">
+      <section ref={galleryRef} className="case-gallery px-0 py-0" style={galleryStyle}>
+        <div className="mx-auto max-w-[1760px]">
           {work.gallery.map((image, index) => (
-            <figure key={image} className="js-reveal case-plate">
-              <img className="case-study-image" src={image} alt={`${work.title} project image ${index + 1}`} />
+            <figure key={image} data-index={index} className="js-reveal case-plate">
+              <img data-parallax={index % 2 === 0 ? "-3" : "3"} className="js-parallax case-study-image" src={image} alt={`${localWork.title} project image ${index + 1}`} />
             </figure>
           ))}
         </div>
@@ -749,7 +978,7 @@ function WorkDetail({ work, navigate, t }) {
         <button data-cursor="view" className="group block w-full text-left" onClick={() => navigate(`/works/${nextWork.slug}`)}>
           <p className="font-mono text-xs uppercase tracking-[0.24em] text-white/44">{t.next}</p>
           <div className="mt-5 flex flex-col justify-between gap-8 border-t border-white/14 pt-8 md:flex-row md:items-end">
-            <h2 className="font-display text-[16vw] font-black uppercase leading-[0.78] tracking-[-0.08em] md:text-[8vw]">{nextWork.title}</h2>
+            <h2 className="js-tilt-title font-display text-[16vw] font-black uppercase leading-[0.78] tracking-[-0.08em] md:text-[8vw]">{nextWork.title}</h2>
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/58 transition-transform group-hover:translate-x-3">{t.openProject}</span>
           </div>
         </button>
@@ -758,17 +987,21 @@ function WorkDetail({ work, navigate, t }) {
   );
 }
 
-function SeriesIndex({ navigate }) {
+function SeriesIndex({ navigate, t }) {
+  const displaySeries = t.language === "zh"
+    ? series.map((item, index) => ({ ...item, ...zhSeries[index] }))
+    : series;
+
   return (
     <section className="bg-white px-5 py-24 md:px-10 md:py-32">
       <div className="js-reveal grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
-        <p className="font-mono text-xs uppercase tracking-[0.24em] text-black/42">Series index</p>
-        <h2 className="section-title max-w-[10ch] font-display text-[16vw] font-black uppercase leading-[0.84] md:text-[8vw]">
-          Related systems
+        <p className="font-mono text-xs uppercase tracking-[0.24em] text-black/42">{t.seriesKicker}</p>
+        <h2 className="section-title js-tilt-title max-w-[10ch] font-display text-[16vw] font-black uppercase leading-[0.84] md:text-[8vw]">
+          {t.seriesTitle}
         </h2>
       </div>
       <div className="mt-16 grid gap-4 md:grid-cols-2">
-        {series.map((item) => {
+        {displaySeries.map((item) => {
           const firstCase = cases.find((work) => work.slug === item.cases[0]);
           const seriesImage = firstCase?.image || cases[0].image;
           return (
@@ -795,22 +1028,26 @@ function SeriesIndex({ navigate }) {
   );
 }
 
-function Archive() {
+function Archive({ t }) {
+  const rows = t.language === "zh"
+    ? archive.map((item, index) => [...zhArchive[index], item[3]])
+    : archive;
+
   return (
     <section className="bg-black px-5 py-24 text-white md:px-10 md:py-28">
       <div className="js-reveal grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-end">
-        <p className="font-mono text-xs uppercase tracking-[0.24em] text-white/42">Archive</p>
+        <p className="font-mono text-xs uppercase tracking-[0.24em] text-white/42">{t.archiveKicker}</p>
         <p className="max-w-[40ch] text-3xl font-medium leading-[1.02] tracking-[-0.045em] md:text-6xl">
-          Earlier and supporting works remain visible without diluting the featured case narrative.
+          {t.archiveBody}
         </p>
       </div>
       <div className="mt-16 border-t border-white/14">
-        {archive.map(([title, year, source, url]) => (
+        {rows.map(([title, year, source, url]) => (
           <div key={url} className="archive-row group grid gap-4 border-b border-white/14 py-5 text-white md:grid-cols-[1fr_120px_180px_120px]">
             <span className="text-xl font-medium tracking-[-0.035em] md:text-3xl">{title}</span>
             <span className="font-mono text-xs uppercase tracking-[0.18em] text-white/46">{year}</span>
             <span className="font-mono text-xs uppercase tracking-[0.18em] text-white/46">{source}</span>
-            <span className="font-mono text-xs uppercase tracking-[0.18em] text-white/38">Queued</span>
+            <span className="font-mono text-xs uppercase tracking-[0.18em] text-white/38">{t.queued}</span>
           </div>
         ))}
       </div>
@@ -818,46 +1055,32 @@ function Archive() {
   );
 }
 
-function About() {
-  const brands = "Tencent / Baidu / Ant Group / ByteDance / Didi / Sina / Du Xiaoman / Sogou / Yiche / Ziroom / Beibingyang / Sony Pictures / Xiaomi / Huawei / IKEA / Mazda / Acura / FILA";
-
+function About({ t }) {
   return (
-    <footer id="contact" className="rounded-t-[2rem] bg-black px-5 py-20 text-white md:px-10 md:py-28">
-      <div className="grid gap-14 md:grid-cols-[1fr_1fr] md:items-end">
-        <div>
-          <p className="js-reveal font-mono text-xs uppercase tracking-[0.24em] text-white/48">About / Contact</p>
-          <h2 className="section-title js-reveal mt-5 max-w-[10ch] font-display text-[17vw] font-black uppercase leading-[0.8] md:text-[8vw]">
-            Objects people keep
-          </h2>
+    <footer id="contact" className="contact-footer bg-[#161616] px-5 text-white md:px-10">
+      <div className="contact-center js-reveal">
+        <p className="mb-6 font-mono text-xs uppercase tracking-[0.24em] text-white/36">{t.contactKicker}</p>
+        <a className="contact-email js-tilt-title" href="mailto:qwhe@foxmail.com">
+          {t.contactEmail}
+        </a>
+        <div className="contact-socials">
+          <span className="wechat-contact">
+            <span>{t.contactLinks[0]}</span>
+            <span className="contact-qr">
+              <img src={publicAsset("/contact/wechat-qr.png")} alt={t.wechatTitle} />
+            </span>
+          </span>
+          <a href="https://www.behance.net/zhouyou" target="_blank" rel="noreferrer">{t.contactLinks[1]}</a>
+          <a href="https://dribbble.com/qwhe" target="_blank" rel="noreferrer">{t.contactLinks[2]}</a>
+          <a href="https://www.zcool.com.cn/u/346744" target="_blank" rel="noreferrer">{t.contactLinks[3]}</a>
         </div>
-        <div className="space-y-9">
-          <p className="js-reveal max-w-[43ch] text-xl font-medium leading-tight tracking-[-0.035em] text-white/84 md:text-3xl">
-            A visual designer with a production mindset: curious, detail-driven, and comfortable moving ideas from sketch to sample table to assembly line.
-          </p>
-          <div className="js-reveal grid grid-cols-2 gap-5 border-y border-white/15 py-6 md:grid-cols-4">
-            <Metric value="13" label="Years" />
-            <Metric value="730k+" label="Units produced" />
-            <Metric value="17.05m+" label="Project value" />
-            <Metric value="17+" label="Brand partners" />
-          </div>
-          <p className="js-reveal text-sm leading-relaxed text-white/56">{brands}</p>
-          <div className="js-reveal flex flex-col gap-3 font-mono text-sm uppercase tracking-[0.16em] text-white/78 md:flex-row md:items-center md:gap-8">
-            <a className="contact-link" href="mailto:qwhe@foxmail.com">qwhe@foxmail.com</a>
-            <span>Beijing / Chaoyang</span>
-            <a className="contact-link" href="https://qwhe.github.io/portfolio/">Original portfolio</a>
-          </div>
+        <div className="contact-bottom">
+          <span>{t.contactLegal[0]}</span>
+          <span>{t.contactLegal[1]}</span>
+          <span>{t.copyright}</span>
         </div>
       </div>
     </footer>
-  );
-}
-
-function Metric({ value, label }) {
-  return (
-    <div>
-      <p className="font-display text-4xl font-black leading-none tracking-[-0.05em] md:text-5xl">{value}</p>
-      <p className="mt-2 text-xs uppercase tracking-[0.08em] text-white/48">{label}</p>
-    </div>
   );
 }
 
