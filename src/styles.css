@@ -66,15 +66,17 @@ a {
 .lang-zh .hero-title,
 .lang-zh .section-title,
 .lang-zh .narrative-type {
-  letter-spacing: -0.045em;
+  letter-spacing: -0.018em;
+  line-height: 0.94;
+  font-weight: 800;
 }
 
 .lang-zh .hero-title {
-  max-width: 5ch;
+  max-width: 4.8ch;
 }
 
 .lang-zh .section-title {
-  max-width: 6ch;
+  max-width: 8ch;
 }
 
 .lang-zh p,
@@ -83,10 +85,28 @@ a {
   letter-spacing: 0;
 }
 
+.lang-zh .font-mono {
+  letter-spacing: 0.08em;
+}
+
+.lang-zh .hero-title span,
+.lang-zh .section-title,
+.lang-zh .narrative-type p {
+  transform-origin: center;
+}
+
 .lang-zh .text-3xl,
 .lang-zh .md\:text-6xl,
 .lang-zh .md\:text-4xl {
-  line-height: 1.12;
+  line-height: 1.18;
+}
+
+.lang-zh .leading-relaxed {
+  line-height: 1.85;
+}
+
+.lang-zh .leading-tight {
+  line-height: 1.42;
 }
 
 .js-tilt-title {
@@ -331,7 +351,7 @@ a {
 
 .work-panel.is-active {
   z-index: 2;
-  transform: scale(1.035);
+  transform: scale(1.06);
 }
 
 .work-panel.is-dimmed {
@@ -364,28 +384,35 @@ a {
   position: relative;
 }
 
+.detail-overview .border-black\/12 {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.detail-overview .text-black\/42,
+.detail-overview .text-black\/34 {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.detail-overview .text-black\/52,
+.detail-overview .text-black\/56 {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.detail-overview .source-chip {
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.detail-overview .source-chip:hover {
+  background: #fff;
+  color: #050505;
+}
+
 .case-gallery {
   position: relative;
   overflow: hidden;
   border-top: 0;
-  background:
-    radial-gradient(circle at 20% 8%, color-mix(in srgb, var(--case-bg-a) 74%, white 26%) 0, transparent 36rem),
-    radial-gradient(circle at 82% 12%, color-mix(in srgb, var(--case-bg-b) 64%, white 36%) 0, transparent 40rem),
-    linear-gradient(135deg, color-mix(in srgb, var(--case-bg-a) 54%, #f4f1ec 46%), color-mix(in srgb, var(--case-bg-b) 32%, #f7f3ec 68%));
-  transition: background 0.65s ease;
-}
-
-.case-gallery::before {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  inset: -18%;
-  background:
-    radial-gradient(circle at 12% 24%, color-mix(in srgb, var(--case-bg-a) 68%, transparent) 0, transparent 30%),
-    radial-gradient(circle at 88% 42%, color-mix(in srgb, var(--case-bg-b) 56%, transparent) 0, transparent 34%),
-    radial-gradient(circle at 52% 88%, rgba(255, 255, 255, 0.42) 0, transparent 32%);
-  filter: blur(58px);
-  opacity: 0.72;
+  background: #000;
 }
 
 .case-gallery > div {
@@ -396,7 +423,8 @@ a {
 .case-plate {
   position: relative;
   margin: 0;
-  padding: clamp(0.35rem, 0.85vw, 0.8rem) clamp(0.75rem, 2vw, 2rem);
+  overflow: hidden;
+  padding: clamp(0.45rem, 1vw, 0.95rem) clamp(0.75rem, 2vw, 2rem);
 }
 
 .case-study-image {
@@ -405,7 +433,10 @@ a {
   height: auto;
   margin: 0 auto;
   background: #fff;
+  transform: scale(1.035);
+  transform-origin: center;
   box-shadow: 0 18px 70px rgba(0, 0, 0, 0.08);
+  will-change: transform;
 }
 
 .contact-footer {

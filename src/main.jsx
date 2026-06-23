@@ -305,24 +305,6 @@ const caseAtmospheres = {
   "baidu-new-year-pack": ["#e3b294", "#8a241f"]
 };
 
-const caseImageTones = {
-  "baidu-planetary-moon": [["#d8c5a3", "#26364a"], ["#ece0c8", "#5b3f2c"], ["#cfd8dc", "#1b2d44"]],
-  "baidu-premium-dragon": [["#d5b887", "#7a211f"], ["#ead6ac", "#341a16"], ["#b88f5a", "#902820"]],
-  "baidu-dragon-employee": [["#efe2c4", "#263f5f"], ["#f4ead6", "#8b3127"], ["#d5e1df", "#1e3d63"]],
-  "duxiaoman-mid-autumn": [["#f0d1a9", "#2f718f"], ["#f6e3c4", "#5c8fa2"], ["#d8eff0", "#1f546b"]],
-  "baidu-lunar-future": [["#c7d7dd", "#142c3d"], ["#e4edf0", "#34485d"], ["#b8c8cc", "#1c2430"]],
-  "ant-ceremonial-ornament": [["#e7ddd0", "#151515"], ["#f0e6d8", "#8d755f"], ["#d8d2cb", "#232323"]],
-  "didi-incense-holder": [["#e4d5c4", "#76583d"], ["#efe3d3", "#3e3329"], ["#ccb59a", "#6a4128"]],
-  "ziroom-new-year-disco": [["#e5c477", "#77212b"], ["#f0d79a", "#352237"], ["#d94c44", "#1d1d2b"]],
-  "sogou-translator-box": [["#d9d0c4", "#26364a"], ["#ece8df", "#5b6b7b"], ["#c9d0d7", "#1f2a36"]],
-  "baidu-new-year-pack": [["#e3b294", "#8a241f"], ["#f1d2b7", "#4b1a18"], ["#db835f", "#a42824"]]
-};
-
-const getCaseTone = (slug, index) => {
-  const tones = caseImageTones[slug] || [caseAtmospheres[slug] || ["#f3f1ed", "#d8d1c7"]];
-  return tones[index % tones.length];
-};
-
 const series = [
   {
     title: "Dragon Boat Systems",
@@ -873,25 +855,28 @@ function WorkDetail({ work, navigate, t }) {
   };
 
   useEffect(() => {
-    const gallery = galleryRef.current;
-    if (!gallery) return undefined;
-    const plates = [...gallery.querySelectorAll(".case-plate")];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (!visible) return;
-        const index = Number(visible.target.dataset.index || 0);
-        const tone = getCaseTone(work.slug, index);
-        gallery.style.setProperty("--case-bg-a", tone[0]);
-        gallery.style.setProperty("--case-bg-b", tone[1]);
-      },
-      { threshold: [0.24, 0.45, 0.68] }
-    );
-    plates.forEach((plate) => observer.observe(plate));
-    return () => observer.disconnect();
-  }, [atmosphere, work.slug]);
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray(".case-study-image").forEach((el, index) => {
+        gsap.fromTo(
+          el,
+          { y: index % 2 === 0 ? 64 : -64, scale: 1.06 },
+          {
+            y: index % 2 === 0 ? -64 : 64,
+            scale: 1.06,
+            ease: "none",
+            scrollTrigger: {
+              trigger: el.closest(".case-plate"),
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.7
+            }
+          }
+        );
+      });
+    }, galleryRef);
+
+    return () => ctx.revert();
+  }, [work.slug]);
 
   return (
     <>
@@ -919,7 +904,7 @@ function WorkDetail({ work, navigate, t }) {
           </div>
         </div>
       </section>
-      <section className="bg-white px-5 py-24 md:px-10 md:py-32">
+      <section className="detail-overview bg-black px-5 py-24 text-white md:px-10 md:py-32">
         <div className="grid gap-14 border-b border-black/12 pb-16 md:grid-cols-[0.72fr_1.28fr] md:pb-24">
           <div className="js-reveal space-y-8">
             <p className="font-mono text-xs uppercase tracking-[0.24em] text-black/42">{t.overview}</p>
@@ -969,7 +954,7 @@ function WorkDetail({ work, navigate, t }) {
         <div className="mx-auto max-w-[1760px]">
           {work.gallery.map((image, index) => (
             <figure key={image} data-index={index} className="js-reveal case-plate">
-              <img data-parallax={index % 2 === 0 ? "-3" : "3"} className="js-parallax case-study-image" src={image} alt={`${localWork.title} project image ${index + 1}`} />
+              <img className="case-study-image" src={image} alt={`${localWork.title} project image ${index + 1}`} />
             </figure>
           ))}
         </div>
